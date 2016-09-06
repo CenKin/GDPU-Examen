@@ -1,0 +1,99 @@
+a:link{text-decoration:none ; color:white ;}
+a:visited {text-decoration:none ; color:white;}
+a:hover {text-decoration:none ; color:white;}
+a:active {text-decoration:none ; color:white;}
+
+.div-btn {
+	width:  400px;
+	text-align: center;
+	border: 0px;
+	margin-top: 5%;
+	color:#FFF;
+}
+
+.div-btn .top{
+	border-radius:0px;
+	float:left;
+	width:100%;
+	padding:30px 0px;
+	border: 1px solid #fff;
+	border-bottom: 0px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	font: 40px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB','Microsoft YaHei';
+}
+.div-btn .left{
+	border-radius:0px;
+	float:left;
+	width: 200px;
+	border: 1px solid #fff;
+	border-bottom-left-radius: 20px;
+	font: 30px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB','Microsoft YaHei';
+}
+.div-btn .right{
+	border-radius:0px;
+	float:right;
+	width: 200px;
+	border: 1px solid #fff;
+	border-left: 0px;
+	border-bottom-right-radius: 20px;
+	font: 30px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB','Microsoft YaHei';
+}
+
+.btn-group2 {
+	padding:0px;
+	margin-top: 5%;
+	margin-right: 15%;
+	margin-left: 15%; 
+}
+
+.btn-group2 .btn{
+	color:#FFF;
+	width:25%;
+	height: 50px;
+	font: 20px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB','Microsoft YaHei';
+}
+
+#mainbody {
+	position: relative;  
+	padding-right: 10%;
+	padding-left: 10%; 
+	background-color: rgba(50, 50, 50, 0.6);
+}
+#mainbody .text{
+	color: #fff;
+	font: 40px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB','Microsoft YaHei';
+ 	text-align: center;
+}
+
+.text select{
+	height: 40px; 
+	width: 80px;
+	font: 30px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB','Microsoft YaHei';
+	color: #000;
+}
+
+.control-label {
+	color: #fff;
+	font-size: 30px;
+}
+
+select option{
+	font-size: 25px;
+}
+
+.checkbox{
+	color:#FFF;
+	padding:8px 10px 30px;
+	border: 1px solid #fff;
+	border-radius:10px;
+}
+
+.checkbox label{
+	margin-right:20px;
+	font-size:20px;
+}
+.checkbox label input[type=checkbox]{
+	width: 20px;
+	height: 20px;
+}

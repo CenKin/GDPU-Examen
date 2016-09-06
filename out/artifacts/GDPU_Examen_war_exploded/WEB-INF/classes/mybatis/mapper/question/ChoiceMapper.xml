@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.examen.mapper.question.ChoiceMapper" >
+  <resultMap id="BaseResultMap" type="cn.examen.domain.question.Choice" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="courseId" property="courseId" jdbcType="VARCHAR" />
+    <result column="courseName" property="courseName" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="CLOB" />
+    <result column="section" property="section" jdbcType="VARCHAR" />
+    <result column="answer1" property="answer1" jdbcType="VARCHAR" />
+    <result column="answer2" property="answer2" jdbcType="VARCHAR" />
+    <result column="answer3" property="answer3" jdbcType="VARCHAR" />
+    <result column="answer4" property="answer4" jdbcType="VARCHAR" />
+    <result column="rightAnswer" property="rightAnswer" jdbcType="VARCHAR" />
+    <result column="diff" property="diff" jdbcType="INTEGER" />
+    <result column="imagepath" property="imagepath" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, courseId, courseName, content, `section`, answer1, answer2, answer3,
+    answer4, rightAnswer, diff, imagepath
+  </sql>
+
+  <insert id="insert" parameterType="cn.examen.domain.question.Choice" >
+    insert into choice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      courseId,
+      courseName,
+      content,
+      `section`,
+      answer1,
+      answer2,
+      rightAnswer,
+      diff,
+      <if test="answer3 != null" >
+        answer3,
+      </if>
+      <if test="answer4 != null" >
+        answer4,
+      </if>
+      <if test="imagepath != null" >
+        imagepath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id},
+      #{courseId},
+      #{courseName},
+      #{content},
+      #{section},
+      #{answer1},
+      #{answer2},
+      #{rightAnswer},
+      #{diff},
+      <if test="answer3 != null" >
+        #{answer3},
+      </if>
+      <if test="answer4 != null" >
+        #{answer4},
+      </if>
+      <if test="imagepath != null" >
+        #{imagepath},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from choice
+    where id = #{id}
+  </delete>
+
+  <delete id="deleteByIds" parameterType="java.util.List" >
+    delete from choice
+    where id in
+    <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+  </delete>
+
+  <update id="update" parameterType="cn.examen.domain.question.Choice" >
+    update choice
+    <set>
+      <if test="courseId != null" >
+        courseId = #{courseId},
+      </if>
+      <if test="courseName != null" >
+        courseName = #{courseName},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="section != null" >
+        `section` = #{section},
+      </if>
+      <if test="answer1 != null" >
+        answer1 = #{answer1},
+      </if>
+      <if test="answer2 != null" >
+        answer2 = #{answer2},
+      </if>
+      <if test="answer3 != null" >
+        answer3 = #{answer3},
+      </if>
+      <if test="answer4 != null" >
+        answer4 = #{answer4},
+      </if>
+      <if test="rightAnswer != null" >
+        rightAnswer = #{rightAnswer},
+      </if>
+      <if test="diff != null" >
+        diff = #{diff},
+      </if>
+      <if test="imagepath != null" >
+        imagepath = #{imagepath},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from choice
+    WHERE id = #{id}
+  </select>
+
+  <select id="findList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from choice
+    WHERE ${property} = #{value}
+    <if test="orderBy!=null">
+      ORDER BY ${orderBy} ${sortBy}
+    </if>
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from choice
+    <if test="orderBy!=null">
+      ORDER BY ${orderBy} ${sortBy}
+    </if>
+  </select>
+  
+  <select id="count" parameterType="cn.examen.domain.question.Choice" resultType="java.lang.Integer">
+    select count(1)
+    from choice
+    <trim prefix="WHERE" prefixOverrides="OR|AND">
+      <if test="id!=null">
+        id like CONCAT('%', #{id} , '%')
+      </if>
+      <if test="courseId!=null">
+        AND courseId like CONCAT('%', #{courseId} , '%')
+      </if>
+      <if test="courseName!=null">
+        AND courseName like CONCAT('%', #{courseName} , '%')
+      </if>
+      <if test="content!=null">
+        AND content like CONCAT('%', #{content} , '%')
+      </if>
+      <if test="section!=null">
+        AND `section` like CONCAT('%', #{section} , '%')
+      </if>
+      <if test="diff!=null">
+        AND diff = #{diff}
+      </if>
+      <if test="imagepath!=null">
+        AND imagepath like CONCAT('%', #{imagepath} , '%')
+      </if>
+    </trim>
+  </select>
+  
+  <select id="queryPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from choice
+    <trim prefix="WHERE" prefixOverrides="OR|AND">
+      <if test="condition.id!=null">
+        id = #{condition.id}
+      </if>
+      <if test="condition.courseId!=null">
+        AND courseId = #{condition.courseId}
+      </if>
+      <if test="condition.courseName!=null">
+        AND courseName = #{condition.courseName}
+      </if>
+      <if test="condition.content!=null">
+        AND content = #{condition.content}
+      </if>
+      <if test="condition.section!=null">
+        AND `section` = #{condition.section}
+      </if>
+      <if test="condition.answer1!=null">
+        AND answer1 = #{condition.answer1}
+      </if>
+      <if test="condition.answer2!=null">
+        AND answer2 = #{condition.answer2}
+      </if>
+      <if test="condition.answer3!=null">
+        AND answer3 = #{condition.answer3}
+      </if>
+      <if test="condition.answer4!=null">
+        AND answer4 = #{condition.answer4}
+      </if>
+      <if test="condition.rightAnswer!=null">
+        AND rightAnswer = #{condition.rightAnswer}
+      </if>
+      <if test="condition.diff!=null">
+        AND diff = #{condition.diff}
+      </if>
+      <if test="condition.rightAnswer!=null">
+        AND imagepath = #{condition.imagepath}
+      </if>
+    </trim>
+    <if test="orderBy!=null">
+      ORDER BY ${orderBy} ${sortBy}
+    </if>
+    <if test="offset!=null">
+      limit ${offset}, ${rows}
+    </if>
+  </select>
+
+  <select id="queryList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from choice
+    <trim prefix="WHERE" prefixOverrides="OR|AND">
+      <if test="condition.id!=null">
+        id = #{condition.id}
+      </if>
+      <if test="condition.courseId!=null">
+        AND courseId = #{condition.courseId}
+      </if>
+      <if test="condition.courseName!=null">
+        AND courseName = #{condition.courseName}
+      </if>
+      <if test="condition.content!=null">
+        AND content = #{condition.content}
+      </if>
+      <if test="condition.section!=null">
+        AND `section` = #{condition.section}
+      </if>
+      <if test="condition.answer1!=null">
+        AND answer1 = #{condition.answer1}
+      </if>
+      <if test="condition.answer2!=null">
+        AND answer2 = #{condition.answer2}
+      </if>
+      <if test="condition.answer3!=null">
+        AND answer3 = #{condition.answer3}
+      </if>
+      <if test="condition.answer4!=null">
+        AND answer4 = #{condition.answer4}
+      </if>
+      <if test="condition.rightAnswer!=null">
+        AND rightAnswer = #{condition.rightAnswer}
+      </if>
+      <if test="condition.diff!=null">
+        AND diff = #{condition.diff}
+      </if>
+      <if test="condition.rightAnswer!=null">
+        AND imagepath = #{condition.imagepath}
+      </if>
+    </trim>
+    <if test="orderBy!=null">
+      ORDER BY ${orderBy} ${sortBy}
+    </if>
+  </select>
+
+  <select id="like" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from choice
+    <trim prefix="WHERE" prefixOverrides="OR|AND">
+      <if test="condition.id!=null">
+        id like CONCAT('%', #{condition.id} , '%')
+      </if>
+      <if test="condition.courseId!=null">
+        AND courseId like CONCAT('%', #{condition.courseId} , '%')
+      </if>
+      <if test="condition.courseName!=null">
+        AND courseName like CONCAT('%', #{condition.courseName} , '%')
+      </if>
+      <if test="condition.content!=null">
+        AND content like CONCAT('%', #{condition.content} , '%')
+      </if>
+      <if test="condition.section!=null">
+        AND `section` like CONCAT('%', #{condition.section} , '%')
+      </if>
+      <if test="condition.answer1!=null">
+        AND answer1 like CONCAT('%', #{condition.answer1} , '%')
+      </if>
+      <if test="condition.answer2!=null">
+        AND answer2 like CONCAT('%', #{condition.answer2} , '%')
+      </if>
+      <if test="condition.answer3!=null">
+        AND answer3 like CONCAT('%', #{condition.answer3} , '%')
+      </if>
+      <if test="condition.answer4!=null">
+        AND answer4 like CONCAT('%', #{condition.answer4} , '%')
+      </if>
+      <if test="condition.rightAnswer!=null">
+        AND rightAnswer like CONCAT('%', #{condition.rightAnswer} , '%')
+      </if>
+      <if test="condition.diff!=null">
+        AND diff = #{condition.diff}
+      </if>
+      <if test="condition.rightAnswer!=null">
+        AND imagepath like CONCAT('%', #{condition.rightAnswer} , '%')
+      </if>
+    </trim>
+    <if test="orderBy!=null">
+      ORDER BY ${orderBy} ${sortBy}
+    </if>
+    <if test="offset!=null">
+      limit ${offset}, ${rows}
+    </if>
+  </select>
+
+</mapper>

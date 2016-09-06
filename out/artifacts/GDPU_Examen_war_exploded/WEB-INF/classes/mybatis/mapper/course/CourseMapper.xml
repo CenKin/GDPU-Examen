@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.examen.mapper.course.CourseMapper" >
+    <resultMap id="BaseResultMap" type="cn.examen.domain.course.Course" >
+        <id column="courseId" property="courseId" jdbcType="VARCHAR" />
+        <result column="courseName" property="courseName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        courseId, courseName
+    </sql>
+
+    <insert id="insert" parameterType="cn.examen.domain.course.Course" >
+        insert into course (courseId, courseName)
+        values (#{courseId}, #{courseName})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from course
+        WHERE courseId = #{courseId}
+    </delete>
+
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from course
+        WHERE courseId in
+        <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+
+    <delete id="deleteByProperty">
+        delete from course
+        WHERE ${property} = #{value}
+    </delete>
+
+    <update id="update" parameterType="cn.examen.domain.course.Course" >
+        update course
+        set courseName = #{courseName}
+        where courseId = #{courseId}
+    </update>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from course
+        WHERE courseId = #{id}
+    </select>
+
+    <select id="findOne" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from course
+        WHERE ${property} = #{value}
+        limit 0,1
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from course
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findListByMajorId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from course
+        where courseId in(
+            select courseId
+            from major_course
+            where majorId = #{majorId}
+        )
+        <if test="orderBy!=null">
+          ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer" parameterType="cn.examen.domain.course.CourseEx">
+        select COUNT(1)
+        from course
+        <trim prefix="WHERE" prefixOverrides="OR|AND">
+            <if test="collId!=null">
+                <if test="majorId!=null">
+                    courseId in (
+                    select courseId
+                    from major_course
+                    where majorId = #{majorId}
+                    )
+                </if>
+                <if test="majorId==null">
+                    courseId in (
+                        select courseId
+                        from major_course
+                        where majorId in (
+                            select majorId
+                            from major
+                            where collId = #{collId}
+                        )
+                    )
+                </if>
+                <if test="courseName!=null">
+                    and courseName like CONCAT('%', #{courseName} , '%')
+                </if>
+            </if>
+        </trim>
+        <if test="collId==null">
+            <if test="courseName!=null">
+                where courseName like CONCAT('%', #{courseName} , '%')
+            </if>
+        </if>
+    </select>
+
+    <select id="like" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from course
+        <trim prefix="WHERE" prefixOverrides="OR|AND">
+            <if test="condition.collId!=null">
+                <if test="condition.majorId!=null">
+                    courseId in (
+                    select courseId
+                    from major_course
+                    where majorId = #{condition.majorId}
+                    )
+                </if>
+                <if test="condition.majorId==null">
+                    courseId in (
+                    select courseId
+                    from major_course
+                    where majorId in (
+                        select majorId
+                        from major
+                        where collId = #{condition.collId}
+                        )
+                    )
+                </if>
+            </if>
+
+            <if test="condition.courseId!=null">
+                AND courseId like CONCAT('%', #{condition.courseId} , '%')
+            </if>
+            <if test="condition.courseName!=null">
+                AND courseName like CONCAT('%', #{condition.courseName} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset!=null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+</mapper>

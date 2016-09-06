@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="fineReport">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/web/WEB-INF/lib/fineReport" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/web/WEB-INF/lib/fineReport" recursive="false" />
+  </library>
+</component>

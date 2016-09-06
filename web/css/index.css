@@ -1,0 +1,61 @@
+.username-icon {
+	margin-bottom:5px;
+	background: url(../image/index/user.png)no-repeat 8px 9px;
+}
+.password-icon {	
+	margin-bottom:20px;	
+	background: url(../image/index/lock.png)no-repeat 8px 9px;
+}
+
+#mainbody {
+ 	padding: 20px 40px 60px;
+	text-align: center;
+	position: relative;  
+	margin-right: 30%; 
+	margin-left: 30%; 
+	background-color: rgba(50, 50, 50, 0.6);
+}
+
+.input-username{
+	margin-top: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	width:90%;
+	background-color:transparent;
+	color:#fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius:10px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius:0px;
+	margin-bottom:3%;
+}	
+
+.input-password{
+	margin-bottom: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	width:90%;
+	background-color:transparent;
+	color:#fff;
+	border-top-left-radius: 0px;
+	border-top-right-radius:0px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius:10px;
+}
+
+.tip{
+	color: #ff0000; 
+	font-size: 17px; 
+	font-weight: 600; 
+	margin-top: 5px; 
+	margin-bottom: 20px;
+}
+
+/*bootstrap*/
+.btn{
+	width:90%;
+	border:0px;
+	margin:3% 0%;
+	font-size: 20px;
+	color:#fff;
+}

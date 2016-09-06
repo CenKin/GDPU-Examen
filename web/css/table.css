@@ -1,0 +1,27 @@
+/*表格通用样式*/
+.my-table{
+    font-size: 18px;
+    background-color: #fff;
+    border-color: rgba(50, 50, 50, 0.6);
+    margin-bottom: 0px;
+}
+.my-table th, .my-table td{
+    text-align: center;
+}
+.my-table .content{
+    text-align: left;
+}
+.my-table-hover > tbody > tr:hover {
+    background-color: #49ece0;
+}
+.my-table td{
+    word-break:break-all;
+}
+.my-table-id{
+    font-size:15px;
+}
+.table-buttom{
+    margin-top: 25px;
+    margin-bottom: 80px;
+    text-align:center;
+}

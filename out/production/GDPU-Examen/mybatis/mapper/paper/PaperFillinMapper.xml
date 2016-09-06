@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.examen.mapper.paper.PaperFillinMapper" >
+  <resultMap id="BaseResultMap" type="cn.examen.domain.paper.PaperFillin" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="paperId" property="paperId" jdbcType="VARCHAR" />
+    <result column="fillinId" property="fillinId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, paperId, fillinId
+  </sql>
+
+  <insert id="insert" parameterType="cn.examen.domain.paper.PaperFillin" >
+    insert into paper_fillin (paperId, fillinId)
+    values (#{paperId}, #{fillinId})
+  </insert>
+
+  <delete id="deleteById" parameterType="cn.examen.domain.paper.PaperFillin" >
+    delete from paper_fillin
+    WHERE id = #{id}
+  </delete>
+
+  <delete id="deleteByIds" parameterType="java.util.List">
+    delete from paper_fillin
+    WHERE id in
+    <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+  </delete>
+
+  <delete id="deleteByProperty">
+    delete from paper_fillin
+    WHERE ${property} = #{value}
+  </delete>
+
+  <delete id="deleteByCondition" parameterType="java.util.Map">
+    delete from paper_fillin
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+      <if test="id!=null">
+        id = #{id}
+      </if>
+      <if test="paperId!=null">
+        AND paperId = #{paperId}
+      </if>
+      <if test="fillinId!=null">
+        AND fillinId = #{fillinId}
+      </if>
+    </trim>
+  </delete>
+
+  <update id="update" parameterType="cn.examen.domain.paper.PaperFillin" >
+    update paper_fillin
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="paperId!=null">
+        paperId = #{paperId},
+      </if>
+      <if test="fillinId!=null">
+        fillinId = #{fillinId},
+      </if>
+    </trim>
+    where id = #{id}
+  </update>
+
+  <select id="findOne" resultMap="BaseResultMap" parameterType="cn.examen.domain.paper.PaperFillin" >
+    select
+    <include refid="Base_Column_List" />
+    from paper_fillin
+    <trim prefix="WHERE" prefixOverrides="OR|AND">
+      <if test="id != null" >
+        id = #{id}
+      </if>
+      <if test="paperId!=null and fillinId!=null" >
+        AND paperId = #{paperId}
+        AND fillinId = #{fillinId}
+      </if>
+    </trim>
+    limit 0,1
+  </select>
+
+  <select id="findList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from paper_fillin
+    WHERE ${property} = #{value}
+  </select>
+
+</mapper>
