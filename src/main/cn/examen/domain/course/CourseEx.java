@@ -28,7 +28,7 @@ public class CourseEx extends Course{
 
     public void setCollId(String collId) {
         if(collId!=null){
-            if(collId.length() > 0)
+            if(collId.trim().length() > 0)
                 this.collId = collId;
             else
                 this.collId = null;
@@ -41,7 +41,7 @@ public class CourseEx extends Course{
 
     public void setCollName(String collName) {
         if(collName!=null){
-            if(collName.length() > 0)
+            if(collName.trim().length() > 0)
                 this.collName = collName;
             else
                 this.collName = null;
@@ -54,7 +54,7 @@ public class CourseEx extends Course{
 
     public void setMajorId(String majorId) {
         if(majorId!=null){
-            if(majorId.length() > 0)
+            if(majorId.trim().length() > 0)
                 this.majorId = majorId;
             else
                 this.majorId = null;
@@ -67,7 +67,7 @@ public class CourseEx extends Course{
 
     public void setMajorName(String majorName) {
         if(majorName!=null){
-            if(majorName.length() > 0)
+            if(majorName.trim().length() > 0)
                 this.majorName = majorName;
             else
                 this.majorName = null;

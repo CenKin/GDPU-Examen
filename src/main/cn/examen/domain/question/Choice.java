@@ -24,7 +24,12 @@ public class Choice extends Question{
     }
 
     public void setAnswer1(String answer1) {
-        this.answer1 = answer1 == null ? null : answer1.trim();
+        if(answer1!=null){
+            if(answer1.trim().length() > 0)
+                this.answer1 = answer1;
+            else
+                this.answer1 = null;
+        } else this.answer1 = null;
     }
 
     public String getAnswer2() {
@@ -32,7 +37,12 @@ public class Choice extends Question{
     }
 
     public void setAnswer2(String answer2) {
-        this.answer2 = answer2 == null ? null : answer2.trim();
+        if(answer2!=null){
+            if(answer2.trim().length() > 0)
+                this.answer2 = answer2;
+            else
+                this.answer2 = null;
+        } else this.answer2 = null;
     }
 
     public String getAnswer3() {
@@ -40,7 +50,12 @@ public class Choice extends Question{
     }
 
     public void setAnswer3(String answer3) {
-        this.answer3 = answer3 == null ? null : answer3.trim();
+        if(answer3!=null){
+            if(answer3.trim().length() > 0)
+                this.answer3 = answer3;
+            else
+                this.answer3 = null;
+        } else this.answer3 = null;
     }
 
     public String getAnswer4() {
@@ -48,7 +63,12 @@ public class Choice extends Question{
     }
 
     public void setAnswer4(String answer4) {
-        this.answer4 = answer4 == null ? null : answer4.trim();
+        if(answer4!=null){
+            if(answer4.trim().length() > 0)
+                this.answer4 = answer4;
+            else
+                this.answer4 = null;
+        } else this.answer4 = null;
     }
 
     public String getRightAnswer() {
@@ -56,7 +76,12 @@ public class Choice extends Question{
     }
 
     public void setRightAnswer(String rightAnswer) {
-        this.rightAnswer = rightAnswer == null ? null : rightAnswer.trim();
+        if(rightAnswer!=null){
+            if(rightAnswer.trim().length() > 0)
+                this.rightAnswer = rightAnswer;
+            else
+                this.rightAnswer = null;
+        } else this.rightAnswer = null;
     }
 
     @Override

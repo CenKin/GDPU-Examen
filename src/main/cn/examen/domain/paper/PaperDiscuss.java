@@ -20,7 +20,12 @@ public class PaperDiscuss {
     }
 
     public void setPaperId(String paperId) {
-        this.paperId = paperId == null ? null : paperId.trim();
+        if(paperId!=null){
+            if(paperId.trim().length() > 0)
+                this.paperId = paperId;
+            else
+                this.paperId = null;
+        } else this.paperId = null;
     }
 
     public String getDiscussId() {
@@ -28,6 +33,11 @@ public class PaperDiscuss {
     }
 
     public void setDiscussId(String discussId) {
-        this.discussId = discussId == null ? null : discussId.trim();
+        if(discussId!=null){
+            if(discussId.trim().length() > 0)
+                this.discussId = discussId;
+            else
+                this.discussId = null;
+        } else this.discussId = null;
     }
 }

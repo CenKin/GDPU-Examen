@@ -35,7 +35,12 @@ public class User {
     public String getUserId() { return userId; }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        if(userId!=null){
+            if(userId.trim().length() > 0)
+                this.userId = userId;
+            else
+                this.userId = null;
+        } else this.userId = null;
     }
 
     public String getRealname() {
@@ -43,7 +48,12 @@ public class User {
     }
 
     public void setRealname(String realname) {
-        this.realname = realname;
+        if(realname!=null){
+            if(realname.trim().length() > 0)
+                this.realname = realname;
+            else
+                this.realname = null;
+        } else this.realname = null;
     }
 
     public String getUsername() {
@@ -51,7 +61,12 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        if(username!=null){
+            if(username.trim().length() > 0)
+                this.username = username;
+            else
+                this.username = null;
+        } else this.username = null;
     }
 
     public String getPassword() {
@@ -59,7 +74,12 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if(password!=null){
+            if(password.trim().length() > 0)
+                this.password = password;
+            else
+                this.password = null;
+        } else this.password = null;
     }
 
     public String getPhone() {
@@ -67,7 +87,12 @@ public class User {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if(phone!=null){
+            if(phone.trim().length() > 0)
+                this.phone = phone;
+            else
+                this.phone = null;
+        } else this.phone = null;
     }
 
     public Integer getUserType() {
@@ -75,7 +100,12 @@ public class User {
     }
 
     public void setUserType(Integer userType) {
-        this.userType = userType;
+        if(userType!=null){
+            if(userType > 0 && userType < 4)
+                this.userType = userType;
+            else
+                this.userType = null;
+        } else this.userType = null;
     }
 
     public String getCollId() {
@@ -83,7 +113,12 @@ public class User {
     }
 
     public void setCollId(String collId) {
-        this.collId = collId;
+        if(collId!=null){
+            if(collId.trim().length() > 0)
+                this.collId = collId;
+            else
+                this.collId = null;
+        } else this.collId = null;
     }
 
     public Date getLoginTime() {

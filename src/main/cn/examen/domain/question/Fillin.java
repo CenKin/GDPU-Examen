@@ -15,7 +15,12 @@ public class Fillin extends Question{
     }
 
     public void setCorrectionFill(String correctionFill) {
-        this.correctionFill = correctionFill == null ? null : correctionFill.trim();
+        if(correctionFill!=null){
+            if(correctionFill.trim().length() > 0)
+                this.correctionFill = correctionFill;
+            else
+                this.correctionFill = null;
+        } else this.correctionFill = null;
     }
 
     @Override

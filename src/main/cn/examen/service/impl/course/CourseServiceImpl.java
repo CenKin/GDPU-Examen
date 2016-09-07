@@ -53,7 +53,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Integer getTotalRecordByParam(CourseEx courseEx) {
-        Integer totalRecord = courseMapper.count(courseEx);
+        Integer totalRecord = courseMapper.countLike(courseEx);
         return totalRecord==null? 0 : totalRecord;
 	}
 
@@ -81,7 +81,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Integer getTotalRecordByParam(Course param) {
-		Integer totalRecord = courseMapper.count(param);
+		Integer totalRecord = courseMapper.countLike(param);
 		return totalRecord==null? 0 : totalRecord;
 	}
 
@@ -93,6 +93,6 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> getPageListByParam(Course param, int offset, int rows) {
 		Map<String, Object> condition = BeanUtils2.transBean2Map(param);
-		return courseMapper.queryPage(condition, offset, (rows-1)*offset, "courseName", "ASC");
+		return courseMapper.like(condition, offset, (rows-1)*offset, "courseName", "ASC");
 	}
 }

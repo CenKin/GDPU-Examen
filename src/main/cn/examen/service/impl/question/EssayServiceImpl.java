@@ -28,7 +28,7 @@ public class EssayServiceImpl implements EssayService {
 
 	@Override
 	public Integer getTotalRecordByParam(Essay e) {
-		Integer totalRecord = essayMapper.count(e);
+		Integer totalRecord = essayMapper.countLike(e);
 		return totalRecord==null? 0 : totalRecord;
 	}
 

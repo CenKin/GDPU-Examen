@@ -29,7 +29,7 @@ public class DiscussServiceImpl implements DiscussService {
 
 	@Override
 	public Integer getTotalRecordByParam(Discuss d) {
-		Integer totalRecord = discussMapper.count(d);
+		Integer totalRecord = discussMapper.countLike(d);
 		return totalRecord==null? 0 : totalRecord;
 	}
 

@@ -38,7 +38,7 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public Integer getTotalRecordByParam(College param) {
-		Integer totalRecord = collegeMapper.count(param);
+		Integer totalRecord = collegeMapper.countLike(param);
 		return totalRecord == null ? 0 : totalRecord;
 	}
 
@@ -50,6 +50,6 @@ public class CollegeServiceImpl implements CollegeService {
 	@Override
 	public List<College> getPageListByParam(College param, int offset, int rows) {
 		Map<String, Object> condition = BeanUtils2.transBean2Map(param);
-		return collegeMapper.queryPage(condition, offset, (rows-1)*offset, "collName", "ASC");
+		return collegeMapper.like(condition, offset, (rows-1)*offset, "collName", "ASC");
 	}
 }

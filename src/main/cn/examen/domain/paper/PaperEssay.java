@@ -20,7 +20,12 @@ public class PaperEssay {
     }
 
     public void setPaperId(String paperId) {
-        this.paperId = paperId == null ? null : paperId.trim();
+        if(paperId!=null){
+            if(paperId.trim().length() > 0)
+                this.paperId = paperId;
+            else
+                this.paperId = null;
+        } else this.paperId = null;
     }
 
     public String getEssayId() {
@@ -28,6 +33,12 @@ public class PaperEssay {
     }
 
     public void setEssayId(String essayId) {
-        this.essayId = essayId == null ? null : essayId.trim();
+        if(essayId!=null){
+            if(essayId.trim().length() > 0)
+                this.essayId = essayId;
+            else
+                this.essayId = null;
+        } else this.essayId = null;
     }
+
 }

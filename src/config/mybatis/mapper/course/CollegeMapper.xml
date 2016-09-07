@@ -36,6 +36,13 @@
     where collId = #{collId}
   </update>
 
+  <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from college
+    WHERE collId = #{id}
+  </select>
+
   <select id="findOne" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -43,6 +50,13 @@
     WHERE ${property} = #{value}
     limit 0,1
   </select>
+
+  <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from college
+        WHERE ${property} = #{value}
+    </select>
 
   <select id="findAll" resultMap="BaseResultMap">
     select
@@ -52,5 +66,4 @@
     ORDER BY ${orderBy} ${sortBy}
     </if>
   </select>
-
 </mapper>

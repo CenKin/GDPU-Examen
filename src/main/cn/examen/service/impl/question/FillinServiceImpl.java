@@ -28,7 +28,7 @@ public class FillinServiceImpl implements FillinService {
 
 	@Override
 	public Integer getTotalRecordByParam(Fillin f) {
-		Integer totalRecord = fillinMapper.count(f);
+		Integer totalRecord = fillinMapper.countLike(f);
 		return totalRecord==null? 0 : totalRecord;
 	}
 

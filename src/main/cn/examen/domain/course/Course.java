@@ -15,7 +15,7 @@ public class Course {
 
     public void setCourseId(String courseId) {
         if(courseId!=null){
-            if(courseId.length() > 0)
+            if(courseId.trim().length() > 0)
                 this.courseId = courseId;
             else
                 this.courseId = null;
@@ -28,7 +28,7 @@ public class Course {
 
     public void setCourseName(String courseName) {
         if(courseName!=null){
-            if(courseName.length() > 0)
+            if(courseName.trim().length() > 0)
                 this.courseName = courseName;
             else
                 this.courseName = null;

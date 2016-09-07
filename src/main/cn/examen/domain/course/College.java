@@ -14,7 +14,12 @@ public class College {
     }
 
     public void setCollId(String collId) {
-        this.collId = collId == null ? null : collId.trim();
+        if(collId!=null){
+            if(collId.trim().length() > 0)
+                this.collId = collId;
+            else
+                this.collId = null;
+        } else this.collId = null;
     }
 
     public String getCollName() {
@@ -22,7 +27,12 @@ public class College {
     }
 
     public void setCollName(String collName) {
-        this.collName = collName == null ? null : collName.trim();
+        if(collName!=null){
+            if(collName.trim().length() > 0)
+                this.collName = collName;
+            else
+                this.collName = null;
+        } else this.collName = null;
     }
 
     @Override

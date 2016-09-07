@@ -73,7 +73,7 @@ public class PaperServiceImpl implements PaperService {
 	public List<Paper> getPageListByParam(Paper paper, int offset, int rows) {
 
         Map<String, Object> condition = BeanUtils2.transBean2Map(paper);
-        List<Paper> list = paperMapper.queryPage(condition, (offset-1)*rows, rows, "createtime", "desc");
+        List<Paper> list = paperMapper.like(condition, (offset-1)*rows, rows, "createtime", "desc");
 		return list;
 	}
 
@@ -214,7 +214,7 @@ public class PaperServiceImpl implements PaperService {
 
     @Override
 	public Integer getTotalRecordByParam(Paper param) {
-        Integer totalRecord = paperMapper.count(param);
+        Integer totalRecord = paperMapper.countLike(param);
         return totalRecord==null? 0 : totalRecord;
 	}
 

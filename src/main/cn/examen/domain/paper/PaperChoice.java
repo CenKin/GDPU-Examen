@@ -20,7 +20,12 @@ public class PaperChoice {
     }
 
     public void setPaperId(String paperId) {
-        this.paperId = paperId == null ? null : paperId.trim();
+        if(paperId!=null){
+            if(paperId.trim().length() > 0)
+                this.paperId = paperId;
+            else
+                this.paperId = null;
+        } else this.paperId = null;
     }
 
     public String getChoiceId() {
@@ -28,6 +33,11 @@ public class PaperChoice {
     }
 
     public void setChoiceId(String choiceId) {
-        this.choiceId = choiceId == null ? null : choiceId.trim();
+        if(choiceId!=null){
+            if(choiceId.trim().length() > 0)
+                this.choiceId = choiceId;
+            else
+                this.choiceId = null;
+        } else this.choiceId = null;
     }
 }

@@ -38,7 +38,12 @@ public class PaperEx extends Paper{
 	}
 
 	public void setCreatetimeVo(String createtimeVo) {
-		this.createtimeVo = createtimeVo;
+		if(createtimeVo!=null){
+			if(createtimeVo.trim().length() > 0)
+				this.createtimeVo = createtimeVo;
+			else
+				this.createtimeVo = null;
+		} else this.createtimeVo = null;
 	}
 
 	public String getPhone() {
@@ -46,7 +51,12 @@ public class PaperEx extends Paper{
 	}
 
 	public void setPhone(String phone) {
-		this.phone = phone;
+		if(phone!=null){
+			if(phone.trim().length() > 0)
+				this.phone = phone;
+			else
+				this.phone = null;
+		} else this.phone = null;
 	}
 
     public String getVettedVo() {
@@ -54,6 +64,11 @@ public class PaperEx extends Paper{
     }
 
     public void setVettedVo(String vettedVo) {
-        this.vettedVo = vettedVo;
+		if(vettedVo!=null){
+			if(vettedVo.trim().length() > 0)
+				this.vettedVo = vettedVo;
+			else
+				this.vettedVo = null;
+		} else this.vettedVo = null;
     }
 }

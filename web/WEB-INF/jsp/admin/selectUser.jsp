@@ -6,10 +6,11 @@
 
     function selectUser(curr){
         var str = "";
+        var rows = 7;
         $("#searchResult").html(str);
         $.ajax({
             type: 'POST',
-            url : '${pageContext.request.contextPath}/admin/selectUser.action',
+            url : '${pageContext.request.contextPath}/admin/selectUser.action?offset='+curr+'&rows='+rows,
             data: $('#userForm').serialize(),
             dataType : 'json',
             success:function(page){
@@ -23,29 +24,29 @@
                 //表头
                 str = '<table class="table table-bordered my-table">'
                         +'<tr>'
-                        +'<th width="380px">用户ID</th>'
-                        +'<th width="150px">真实姓名</th>'
-                        +'<th>所属学院</th>'
-                        +'<th width="150px">用户名</th>'
-                        +'<th width="150px">用户类型</th>'
+                        +'<th width="180px">用户ID</th>'
+                        +'<th width="130px">真实姓名</th>'
+                        +'<th width="130px">所属学院</th>'
+                        +'<th>用户名</th>'
+                        +'<th width="100px">用户类型</th>'
                         +'<th width="150px">联系方式</th>'
-                        +'<th width="150px">最后登录时间</th>'
+                        +'<th width="130px">最后登录时间</th>'
                         +'<th width="150px">操作</th>'
                         +'</tr>'
                         +'</table>'
-                        +'<table class="table table-striped table-bordered table-hover my-table">'
+                        +'<table class="table table-striped table-bordered my-table-hover my-table">'
                         +'<tbody id="courseTable">';
 
                 //表格内容
                 $.each(page.pageData, function(i,user){
                     str += '<tr>'
-                            +'<td width="380px">'+user.userId+'</td>'
-                            +'<td width="150px">'+user.realname+'</td>'
-                            +'<td>'+user.collIdName+'</td>'
-                            +'<td width="150px">'+user.username+'</td>'
-                            +'<td width="150px">'+user.userTypeVo+'</td>'
+                            +'<td width="180px" class="my-table-id">'+user.userId+'</td>'
+                            +'<td width="130px">'+user.realname+'</td>'
+                            +'<td width="130px">'+user.collIdName+'</td>'
+                            +'<td>'+user.username+'</td>'
+                            +'<td width="100px">'+user.userTypeVo+'</td>'
                             +'<td width="150px">'+user.phone+'</td>'
-                            +'<td width="150px">'+user.loginTimeVo+'</td>'
+                            +'<td width="130px">'+user.loginTimeVo+'</td>'
                             +'<td width="150px">'
                             +'<button onclick="deleteUser(\''+user.userId+'\')" class="btn btn-primary">删除</button>'
                             +'<button onclick="updateUser('+user+')" class="btn btn-primary">修改</button>'
@@ -78,7 +79,7 @@
 
 <div class="main">
     <h1>检索用户</h1>
-    <form class="form-horizontal" onsubmit="return selectUser();" id="userForm">
+    <form class="form-horizontal" onsubmit="return selectUser(1);" id="userForm">
         <div class="form-group">
             <label class="col-xs-2 control-label">id</label>
             <div class="col-xs-10">
@@ -89,7 +90,7 @@
             <label class="col-xs-2 control-label">学院</label>
             <div class="col-xs-10">
                 <select name="collId" id="collId">
-                    <option>----------</option>
+                    <option value="">----------</option>
                 </select>
             </div>
         </div>

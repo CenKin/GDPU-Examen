@@ -38,9 +38,6 @@
         function selectCourse(url){
             jump(url);
         }
-        function logout(){
-            window.location.href = "${pageContext.request.contextPath}/logout.action";
-        }
     </script>
 </head>
 <body>
@@ -67,7 +64,7 @@
                         <ul>
                             <li><a href="javascript:void(0)" onclick="addQuestion('admin/toAddQuestion.action')" class="btn btn-default sidebar-child"><i class="glyphicon glyphicon-plus-sign"></i> 增加题目</a></li>
                             <li><a href="javascript:void(0)" onclick="selectQuestion('admin/toSelectQuestion.action')" class="btn btn-default sidebar-child"><i class="glyphicon glyphicon-search"></i> 高级检索</a></li>
-                            <li><a href="javascript:void(0)" onclick="jump('admin/toImportQuestion.action')" class="btn btn-default sidebar-child"><i class="glyphicon glyphicon-log-in"></i> 题库导入</a></li>
+                            <li><a href="javascript:void(0)" onclick="jump('admin/toImportQuestion.action')" class="btn btn-default sidebar-child"><i class="glyphicon glyphicon glyphicon-import"></i> 题库导入</a></li>
                         </ul>
                     </div>
                 </div>
@@ -131,7 +128,7 @@
                     <a data-toggle="collapse" data-parent="#sidebar" href="javascript:void(0)" onclick="logout()">
                         <h4 class="panel-title">
                             <div class="text">
-                                <span class="glyphicon glyphicon-user"></span> 登出
+                                <span class="glyphicon glyphicon-log-out"></span> 登出
                             </div>
                         </h4>
                     </a>

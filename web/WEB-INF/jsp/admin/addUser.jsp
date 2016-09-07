@@ -47,7 +47,6 @@
             <label class="col-xs-2 control-label">学院</label>
             <div class="col-xs-10">
                 <select name="collId" id="collId">
-                    <option>----------</option>
                 </select>
             </div>
         </div>

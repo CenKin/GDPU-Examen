@@ -62,7 +62,7 @@ public class Paper {
 
     public void setCollId(String collId) {
         if(collId!=null){
-            if(collId.length() > 0)
+            if(collId.trim().length() > 0)
                 this.collId = collId;
             else
                 this.collId = null;
@@ -75,7 +75,7 @@ public class Paper {
 
     public void setPaperId(String paperId) {
         if(paperId!=null){
-            if(paperId.length() > 0)
+            if(paperId.trim().length() > 0)
                 this.paperId = paperId;
             else
                 this.paperId = null;
@@ -88,7 +88,7 @@ public class Paper {
 
     public void setUserId(String userId) {
         if(userId!=null){
-            if(userId.length() > 0)
+            if(userId.trim().length() > 0)
                 this.userId = userId;
             else
                 this.userId = null;
@@ -101,7 +101,7 @@ public class Paper {
 
     public void setUserRealname(String userRealname) {
         if(userRealname!=null){
-            if(userRealname.length() > 0)
+            if(userRealname.trim().length() > 0)
                 this.userRealname = userRealname;
             else
                 this.userRealname = null;
@@ -114,7 +114,7 @@ public class Paper {
 
     public void setMajorId(String majorId) {
         if(majorId!=null){
-            if(majorId.length() > 0)
+            if(majorId.trim().length() > 0)
                 this.majorId = majorId;
             else
                 this.majorId = null;
@@ -127,7 +127,7 @@ public class Paper {
 
     public void setCourseId(String courseId) {
         if(courseId!=null){
-            if(courseId.length() > 0)
+            if(courseId.trim().length() > 0)
                 this.courseId = courseId;
             else
                 this.courseId = null;
@@ -140,7 +140,7 @@ public class Paper {
 
     public void setCourseName(String courseName) {
         if(courseName!=null){
-            if(courseName.length() > 0)
+            if(courseName.trim().length() > 0)
                 this.courseName = courseName;
             else
                 this.courseName = null;
@@ -205,7 +205,7 @@ public class Paper {
 
     public void setPaperType(String paperType) {
         if(paperType!=null){
-            if(paperType.length() > 0)
+            if(paperType.trim().length() > 0)
                 this.paperType = paperType;
             else
                 this.paperType = null;
@@ -218,7 +218,7 @@ public class Paper {
 
     public void setUseClasses(String useClasses) {
         if(useClasses!=null){
-            if(useClasses.length() > 0)
+            if(useClasses.trim().length() > 0)
                 this.useClasses = useClasses;
             else
                 this.useClasses = null;
@@ -231,7 +231,7 @@ public class Paper {
 
     public void setUseTerm(String useTerm) {
         if(useTerm!=null){
-            if(useTerm.length() > 0)
+            if(useTerm.trim().length() > 0)
                 this.useTerm = useTerm;
             else
                 this.useTerm = null;
@@ -291,7 +291,7 @@ public class Paper {
 
     public void setAssessorId(String assessorId) {
         if(assessorId!=null){
-            if(assessorId.length() > 0)
+            if(assessorId.trim().length() > 0)
                 this.assessorId = assessorId;
             else
                 this.assessorId = null;
@@ -304,7 +304,7 @@ public class Paper {
 
     public void setAssessorName(String assessorName) {
         if(assessorName!=null){
-            if(assessorName.length() > 0)
+            if(assessorName.trim().length() > 0)
                 this.assessorName = assessorName;
             else
                 this.assessorName = null;

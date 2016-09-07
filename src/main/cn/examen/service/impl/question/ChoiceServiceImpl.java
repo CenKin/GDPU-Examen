@@ -32,7 +32,7 @@ public class ChoiceServiceImpl implements ChoiceService {
 
 	@Override
 	public Integer getTotalRecordByParam(Choice c) {
-		Integer totalRecord = choiceMapper.count(c);
+		Integer totalRecord = choiceMapper.countLike(c);
 		return totalRecord==null? 0 : totalRecord;
 	}
 

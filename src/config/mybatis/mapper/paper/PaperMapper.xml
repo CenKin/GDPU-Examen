@@ -85,7 +85,7 @@
         <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
     </delete>
 
-    <delete id="deleteByCondition" parameterType="java.util.Map">
+    <delete id="deleteByCondition">
         delete from paper
         <trim prefix="WHERE" prefixOverrides="AND|OR">
             <if test="paperId!=null">
@@ -152,7 +152,63 @@
         </if>
     </select>
 
-    <select id="count" parameterType="cn.examen.domain.question.Choice" resultType="java.lang.Integer">
+    <select id="queryList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from paper
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="condition.userId != null" >
+                userId = #{condition.userId}
+            </if>
+            <if test="condition.userRealname != null" >
+                AND userRealname = #{condition.userRealname}
+            </if>
+            <if test="condition.collId != null" >
+                AND collId = #{condition.collId}
+            </if>
+            <if test="condition.majorId != null" >
+                AND majorId = #{condition.majorId}
+            </if>
+            <if test="condition.courseId != null" >
+                AND courseId = #{condition.courseId}
+            </if>
+            <if test="condition.courseName != null" >
+                AND courseName = #{condition.courseName}
+            </if>
+            <if test="condition.paperType != null" >
+                AND paperType = #{condition.paperType}
+            </if>
+            <if test="condition.useClasses != null" >
+                AND useClasses = #{condition.useClasses}
+            </if>
+            <if test="condition.useTerm != null" >
+                AND useTerm = #{condition.useTerm}
+            </if>
+            <if test="condition.fromYear != null" >
+                AND fromYear = #{condition.fromYear}
+            </if>
+            <if test="condition.toYear != null" >
+                AND toYear = #{condition.toYear}
+            </if>
+            <if test="condition.createtime != null" >
+                AND createtime = #{condition.createtime}
+            </if>
+            <if test="condition.vetted != null" >
+                AND vetted = #{condition.vetted}
+            </if>
+            <if test="condition.assessorId != null" >
+                AND assessorId = #{condition.assessorId}
+            </if>
+            <if test="condition.assessorName != null" >
+                AND assessorName = #{condition.assessorName}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="count" parameterType="cn.examen.domain.paper.Paper" resultType="java.lang.Integer">
         select count(1)
         from paper
         <trim prefix="WHERE" prefixOverrides="OR|AND">
@@ -238,60 +294,59 @@
         </if>
     </select>
 
-    <select id="queryList" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
+    <select id="countLike" parameterType="cn.examen.domain.paper.Paper" resultType="java.lang.Integer">
+        select count(1)
         from paper
-        <trim prefix="WHERE" prefixOverrides="AND|OR">
-            <if test="condition.userId != null" >
-                userId = #{condition.userId}
+        <trim prefix="WHERE" prefixOverrides="OR|AND">
+            <if test="paperId!=null">
+                paperId like CONCAT('%', #{paperId} , '%')
             </if>
-            <if test="condition.userRealname != null" >
-                AND userRealname = #{condition.userRealname}
+            <if test="userId != null" >
+                AND userId like CONCAT('%', #{userId} , '%')
             </if>
-            <if test="condition.collId != null" >
-                AND collId = #{condition.collId}
+            <if test="userRealname != null" >
+                AND userRealname like CONCAT('%', #{userRealname} , '%')
             </if>
-            <if test="condition.majorId != null" >
-                AND majorId = #{condition.majorId}
+            <if test="collId != null" >
+                AND collId like CONCAT('%', #{collId} , '%')
             </if>
-            <if test="condition.courseId != null" >
-                AND courseId = #{condition.courseId}
+            <if test="majorId != null" >
+                AND majorId like CONCAT('%', #{majorId} , '%')
             </if>
-            <if test="condition.courseName != null" >
-                AND courseName = #{condition.courseName}
+            <if test="courseId != null" >
+                AND courseId like CONCAT('%', #{courseId} , '%')
             </if>
-            <if test="condition.paperType != null" >
-                AND paperType = #{condition.paperType}
+            <if test="courseName != null" >
+                AND courseName like CONCAT('%', #{courseName} , '%')
             </if>
-            <if test="condition.useClasses != null" >
-                AND useClasses = #{condition.useClasses}
+            <if test="paperType != null" >
+                AND paperType = #{paperType}
             </if>
-            <if test="condition.useTerm != null" >
-                AND useTerm = #{condition.useTerm}
+            <if test="useClasses != null" >
+                AND useClasses like CONCAT('%', #{useClasses} , '%')
             </if>
-            <if test="condition.fromYear != null" >
-                AND fromYear = #{condition.fromYear}
+            <if test="useTerm != null" >
+                AND useTerm = #{useTerm}
             </if>
-            <if test="condition.toYear != null" >
-                AND toYear = #{condition.toYear}
+            <if test="fromYear != null" >
+                AND fromYear = #{fromYear}
             </if>
-            <if test="condition.createtime != null" >
-                AND createtime = #{condition.createtime}
+            <if test="toYear != null" >
+                AND toYear = #{toYear}
             </if>
-            <if test="condition.vetted != null" >
-                AND vetted = #{condition.vetted}
+            <if test="createtime != null" >
+                AND createtime = #{createtime}
             </if>
-            <if test="condition.assessorId != null" >
-                AND assessorId = #{condition.assessorId}
+            <if test="vetted != null" >
+                AND vetted = #{vetted}
             </if>
-            <if test="condition.assessorName != null" >
-                AND assessorName = #{condition.assessorName}
+            <if test="assessorId != null" >
+                AND assessorId like CONCAT('%', #{assessorId} , '%')
+            </if>
+            <if test="assessorName != null" >
+                AND assessorName like CONCAT('%', #{assessorName} , '%')
             </if>
         </trim>
-        <if test="orderBy!=null">
-            ORDER BY ${orderBy} ${sortBy}
-        </if>
     </select>
 
     <select id="like" resultMap="BaseResultMap">

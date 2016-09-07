@@ -93,3 +93,16 @@ function getMajorId(collId){
     }
 }
 
+function logout(id) {
+    layer.msg('确认登出？', {
+        time: 0,
+        btn: ['登出', '取消'],
+        yes: function(index){
+            $.ajax({
+                url: localhost + "/logout.action",
+            });
+            layer.close(index);
+        }
+    });
+}
+

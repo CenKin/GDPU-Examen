@@ -15,7 +15,12 @@ public class Major {
     }
 
     public void setMajorId(String majorId) {
-        this.majorId = majorId == null ? null : majorId.trim();
+        if(majorId!=null){
+            if(majorId.trim().length() > 0)
+                this.majorId = majorId;
+            else
+                this.majorId = null;
+        } else this.majorId = null;
     }
 
     public String getMajorName() {
@@ -23,7 +28,12 @@ public class Major {
     }
 
     public void setMajorName(String majorName) {
-        this.majorName = majorName == null ? null : majorName.trim();
+        if(majorName!=null){
+            if(majorName.trim().length() > 0)
+                this.majorName = majorName;
+            else
+                this.majorName = null;
+        } else this.majorName = null;
     }
 
     public String getCollId() {
@@ -31,7 +41,12 @@ public class Major {
     }
 
     public void setCollId(String collId) {
-        this.collId = collId == null ? null : collId.trim();
+        if(collId!=null){
+            if(collId.trim().length() > 0)
+                this.collId = collId;
+            else
+                this.collId = null;
+        } else this.collId = null;
     }
 
     @Override

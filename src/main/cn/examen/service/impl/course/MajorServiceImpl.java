@@ -49,6 +49,6 @@ public class MajorServiceImpl implements MajorService {
 	@Override
 	public List<Major> getPageListByParam(Major param, int offset, int rows) {
 		Map<String, Object> condition = BeanUtils2.transBean2Map(param);
-		return majorMapper.queryPage(condition, offset, (rows-1)*offset, "majorName", "ASC");
+		return majorMapper.like(condition, offset, (rows-1)*offset, "majorName", "ASC");
 	}
 }

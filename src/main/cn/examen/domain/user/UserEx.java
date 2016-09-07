@@ -18,7 +18,7 @@ public class UserEx extends User {
         super(user);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date loginTime = user.getLoginTime();
-        this.setLoginTimeVo(loginTime != null ? sdf.format(loginTime) : null);
+        this.setLoginTimeVo(loginTime != null ? sdf.format(loginTime) : "未曾登录");
 
         Integer userType = user.getUserType();
         if (userType==null){
@@ -31,7 +31,9 @@ public class UserEx extends User {
             this.setUserTypeVo("系主任");
         } else this.setUserTypeVo(null);
 
-        this.setCollIdName(coll.getCollName());
+        if(coll!=null) {
+            this.setCollIdName(coll.getCollName());
+        } else this.setCollIdName("系统管理员");
     }
 
     public String getCollIdName() {
@@ -39,7 +41,12 @@ public class UserEx extends User {
     }
 
     public void setCollIdName(String collIdName) {
-        this.collIdName = collIdName;
+        if(collIdName!=null){
+            if(collIdName.trim().length() > 0)
+                this.collIdName = collIdName;
+            else
+                this.collIdName = null;
+        } else this.collIdName = null;
     }
 
     public String getUserTypeVo() {
@@ -47,7 +54,12 @@ public class UserEx extends User {
     }
 
     public void setUserTypeVo(String userTypeVo) {
-        this.userTypeVo = userTypeVo;
+        if(userTypeVo!=null){
+            if(userTypeVo.trim().length() > 0)
+                this.userTypeVo = userTypeVo;
+            else
+                this.userTypeVo = null;
+        } else this.userTypeVo = null;
     }
 
     public String getLoginTimeVo() {
@@ -55,6 +67,11 @@ public class UserEx extends User {
     }
 
     public void setLoginTimeVo(String loginTimeVo) {
-        this.loginTimeVo = loginTimeVo;
+        if(loginTimeVo!=null){
+            if(loginTimeVo.trim().length() > 0)
+                this.loginTimeVo = loginTimeVo;
+            else
+                this.loginTimeVo = null;
+        } else this.loginTimeVo = null;
     }
 }

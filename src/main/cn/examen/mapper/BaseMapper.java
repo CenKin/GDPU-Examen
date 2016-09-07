@@ -1,10 +1,37 @@
 package cn.examen.mapper;
 
-import cn.examen.domain.question.Choice;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
+
+/**方法目录
+一、增加
+    public int insert(T entity);
+
+二、删除
+    public int deleteById(Object id);
+    public int deleteByIds(List list);
+    public int deleteByProperty(@Param("property") String property, @Param("value") Object value);
+    public int deleteByCondition(Map<String, Object> condition);
+
+三、更新
+    public int update(T entity);
+
+四、查询
+    public T findById(String id);
+    public T findOne(@Param("property") String property, @Param("value") Object value);
+    public List<T> findList(@Param("property") String property, @Param("value") Object value, @Param("orderBy") String orderBy, @Param("sortBy") String sortBy);
+    public List<T> findAll(@Param("orderBy") String orderBy, @Param("sortBy") String sortBy);
+    public List<T> queryList(@Param("condition") Map<String, Object> condition, @Param("orderBy") String orderBy, @Param("sortBy") String sortBy);
+
+    public int count(T param);
+    public List<T> queryPage(@Param("condition") Map<String, Object> condition, @Param("offset") int offset, @Param("rows") int rows,@Param("orderBy") String orderBy, @Param("sortBy") String sortBy);
+
+    public int countLike(T param);
+    public List<T> like(@Param("condition") Map<String, Object> condition, @Param("offset") int offset, @Param("rows") int rows,@Param("orderBy") String orderBy, @Param("sortBy") String sortBy);
+*/
+
 
 public interface BaseMapper<T> {
     /********************************************************************增加（insert）*******/
@@ -115,6 +142,13 @@ public interface BaseMapper<T> {
      * @return 返回符合条件的泛型参数对应表中的数量
      */
     public int count(T param);
+
+    /**
+     * 根据条件进行模糊数据数量的查询
+     * @param param
+     * @return 返回符合模糊查找条件的泛型参数对应表中的数量
+     */
+    public int countLike(T param);
 
     /**
      * 取得泛型类型

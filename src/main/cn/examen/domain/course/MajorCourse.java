@@ -20,7 +20,12 @@ public class MajorCourse {
     }
 
     public void setMajorId(String majorId) {
-        this.majorId = majorId == null ? null : majorId.trim();
+        if(majorId!=null){
+            if(majorId.trim().length() > 0)
+                this.majorId = majorId;
+            else
+                this.majorId = null;
+        } else this.majorId = null;
     }
 
     public String getCourseId() {
@@ -28,6 +33,11 @@ public class MajorCourse {
     }
 
     public void setCourseId(String courseId) {
-        this.courseId = courseId == null ? null : courseId.trim();
+        if(courseId!=null){
+            if(courseId.trim().length() > 0)
+                this.courseId = courseId;
+            else
+                this.courseId = null;
+        } else this.courseId = null;
     }
 }

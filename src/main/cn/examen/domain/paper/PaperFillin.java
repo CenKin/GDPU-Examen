@@ -20,7 +20,12 @@ public class PaperFillin {
     }
 
     public void setPaperId(String paperId) {
-        this.paperId = paperId == null ? null : paperId.trim();
+        if(paperId!=null){
+            if(paperId.trim().length() > 0)
+                this.paperId = paperId;
+            else
+                this.paperId = null;
+        } else this.paperId = null;
     }
 
     public String getFillinId() {
@@ -28,6 +33,11 @@ public class PaperFillin {
     }
 
     public void setFillinId(String fillinId) {
-        this.fillinId = fillinId == null ? null : fillinId.trim();
+        if(fillinId!=null){
+            if(fillinId.trim().length() > 0)
+                this.fillinId = fillinId;
+            else
+                this.fillinId = null;
+        } else this.fillinId = null;
     }
 }

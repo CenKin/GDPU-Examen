@@ -24,7 +24,7 @@ public class Question {
 
     public void setId(String id) {
         if(id!=null){
-            if(id.length() > 0)
+            if(id.trim().length() > 0)
                 this.id = id;
             else
                 this.id = null;
@@ -37,7 +37,7 @@ public class Question {
 
     public void setCourseId(String courseId) {
         if(courseId!=null){
-            if(courseId.length() > 0)
+            if(courseId.trim().length() > 0)
                 this.courseId = courseId;
             else
                 this.courseId = null;
@@ -50,7 +50,7 @@ public class Question {
 
     public void setContent(String content) {
         if(content!=null){
-            if(content.length() > 0)
+            if(content.trim().length() > 0)
                 this.content = content;
             else
                 this.content = null;
@@ -63,7 +63,7 @@ public class Question {
 
     public void setSection(String section) {
         if(section!=null){
-            if(section.length() > 0)
+            if(section.trim().length() > 0)
                 this.section = section;
             else
                 this.section = null;
@@ -89,7 +89,7 @@ public class Question {
 
     public void setImagepath(String imagepath) {
         if(imagepath!=null){
-            if(imagepath.length() > 0)
+            if(imagepath.trim().length() > 0)
                 this.imagepath = imagepath;
             else
                 this.imagepath = null;
@@ -102,7 +102,7 @@ public class Question {
 
     public void setCourseName(String courseName) {
         if(courseName!=null){
-            if(courseName.length() > 0)
+            if(courseName.trim().length() > 0)
                 this.courseName = courseName;
             else
                 this.courseName = null;

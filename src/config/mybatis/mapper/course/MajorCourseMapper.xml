@@ -6,7 +6,6 @@
     <result column="majorId" property="majorId" jdbcType="VARCHAR" />
     <result column="courseId" property="courseId" jdbcType="VARCHAR" />
   </resultMap>
-
   <sql id="Base_Column_List" >
     id, majorId, courseId
   </sql>

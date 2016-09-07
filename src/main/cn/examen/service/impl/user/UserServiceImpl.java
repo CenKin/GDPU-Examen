@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer getTotalRecordByParam(User param) {
-        Integer totalRecord = userMapper.count(param);
+        Integer totalRecord = userMapper.countLike(param);
         return totalRecord == null ? 0 : totalRecord;
 	}
 
@@ -63,6 +63,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getPageListByParam(User param, int offset, int rows) {
         Map<String, Object> condition = BeanUtils2.transBean2Map(param);
-        return userMapper.queryPage(condition, offset, (rows-1)*offset, "collName", "ASC");
+        return userMapper.like(condition, offset, (rows-1)*offset, "realname", "ASC");
 	}
 }
