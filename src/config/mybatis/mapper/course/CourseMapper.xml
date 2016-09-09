@@ -30,6 +30,21 @@
         WHERE ${property} = #{value}
     </delete>
 
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from course
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <if test="courseId!=null">
+                courseId = #{courseId}
+            </if>
+            <if test="courseName!=null">
+                AND courseName = #{courseName}
+            </if>
+            <if test="courseId==null">
+                <if test="courseName==null">false</if>
+            </if>
+        </trim>
+    </delete>
+
     <update id="update" parameterType="cn.examen.domain.course.Course" >
         update course
         set courseName = #{courseName}

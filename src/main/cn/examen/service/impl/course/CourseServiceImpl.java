@@ -63,6 +63,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public String deleteByParam(Course course) {
+        Map<String, Object> condition = BeanUtils2.transBean2Map(course);
+        int code = courseMapper.deleteByCondition(condition);
+        return code==1 ? StateCode.DELETE_SUCCESS : StateCode.DELETE_FAIL;
+    }
+
+    @Override
 	public String addOne(Course param, Object...objects) {
         String majorId = null;
         if(objects!=null){
@@ -95,4 +102,16 @@ public class CourseServiceImpl implements CourseService {
 		Map<String, Object> condition = BeanUtils2.transBean2Map(param);
 		return courseMapper.like(condition, offset, (rows-1)*offset, "courseName", "ASC");
 	}
+
+	@Override
+	public String updateOne(Course param) {
+		int code = courseMapper.update(param);
+		return code==1 ? StateCode.UPDATE_SUCCESS : StateCode.UPDATE_FAIL;
+	}
+
+    @Override
+    public String deleteById(String id) {
+        int code = courseMapper.deleteById(id);
+        return code==1 ? StateCode.DELETE_SUCCESS : StateCode.DELETE_FAIL;
+    }
 }

@@ -30,6 +30,7 @@
         return false;
     }
 </script>
+
 <div class="main">
     <h1>增加科目</h1>
     <form class="form-horizontal" id="courseForm" onsubmit="return submitForm();">

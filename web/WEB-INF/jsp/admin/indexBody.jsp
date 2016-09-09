@@ -1,18 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script>
-    window.onload = function() {
-        var linkList=window.parent.document.getElementsByTagName("link");//获取父窗口link标签对象列表
-        var head=document.getElementsByTagName("head").item(0);
-        //外联样式
-        for(var i=0;i<linkList.length;i++) {
-            var l=document.createElement("link");
-            l.rel = 'stylesheet'
-            l.type = 'text/css';
-            l.href=linkList[i].href;
-            head.appendChild(l);
-        }
-    }
-</script>
+
 <div class="container main jumbotron">
     <h1>欢迎来到组卷管理系统</h1><br>
     <h4>快速开始 <span class="badge"/>></h4><br>

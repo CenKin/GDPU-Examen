@@ -11,4 +11,8 @@ public interface BaseService<T> {
     T getById(String id);
 
     List<T> getPageListByParam(T param, int offset, int rows);
+
+    String updateOne(T param);
+
+    String deleteById(String questionId);
 }

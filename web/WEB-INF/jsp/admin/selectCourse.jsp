@@ -6,73 +6,31 @@
         getMajorId();
     });
 </script>
-<!--检索科目-->
-<script>
-    var rows = 7;
-    function submitForm(curr){
-        var str = "";
-        $("#searchResult").html(str);
-        $.ajax({
-            type:"POST",
-            url:"${pageContext.request.contextPath}/admin/selectCourse.action?offset="+curr+"&rows="+rows,
-            data: $("#courseForm").serialize(),
-            dataType:"json",
-            success:function(page){
-                var pages = page.pageCount;
 
-                if(pages==0){
-                    layer.alert('没有任何记录',{icon:2});
-                    return;
-                }
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/json2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin/selectCourse.js"></script>
 
-                //表头
-                str = '<table class="table table-bordered my-table">'
-                    +'<tr>'
-                        +'<th width="380px">课程号</th>'
-                        +'<th>科目名称</th>'
-                        +'<th width="150px">操作</th>'
-                    +'</tr>'
-                    +'</table>'
-                    +'<table class="table table-striped table-bordered table-hover my-table">'
-                    +'<tbody id="courseTable">';
-
-                //表格内容
-                $.each(page.pageData, function(i,course){
-                    var courseId = course.courseId;
-                    var courseName = course.courseName;
-
-                    str += '<tr>'
-                            +'<td width="380px">'+courseId+'</td>'
-                            +'<td>'+courseName+'</td>'
-                            +'<td width="150px">'
-                            +'<button onclick="deleteCourse(\''+courseId+'\')" class="btn btn-primary">删除</button>'
-                            +'<button onclick="updateCourse('+course+')" class="btn btn-primary">修改</button>'
-                            + '</td>'
-                });
-
-                str += '</tbody></table>';
-                $("#searchResult").html(str);
-
-                //调用分页
-                laypage({
-                    cont: 'courseButtom',
-                    pages: pages,
-                    curr: curr || 1,
-                    skin: 'molv',
-                    jump: function(obj, first){
-                        if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
-                            submitForm(obj.curr);
-                        }
-                    }
-                })
-            },
-            error:function(data){
-                layer.alert("未知错误，请过段时间再尝试",{icon:2});
-            }
-        });
-        return false;
-    }
-</script>
+<!--模态框-->
+<div class="fade modal" id="myModal" style="top:200px;">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal-content">
+            <form id="newCourseForm" onsubmit="return updateCourse()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aira-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title">科目</h2>
+                    <h4 class="modal-title" id="modal-title"></h4>
+                </div>
+                <div class="modal-body" id="modal-body"></div>
+                <div class="modal-footer" id="modal-footer">
+                    <input type="submit" class="btn btn-default" value="修改提交"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="main">
     <h1>检索科目</h1>

@@ -65,4 +65,16 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> condition = BeanUtils2.transBean2Map(param);
         return userMapper.like(condition, offset, (rows-1)*offset, "realname", "ASC");
 	}
+
+	@Override
+	public String updateOne(User param) {
+		int code = userMapper.update(param);
+		return code==1 ? StateCode.UPDATE_SUCCESS : StateCode.UPDATE_FAIL;
+	}
+
+	@Override
+	public String deleteById(String id) {
+		int code = userMapper.deleteById(id);
+		return code==1 ? StateCode.DELETE_SUCCESS : StateCode.DELETE_FAIL;
+	}
 }

@@ -10,7 +10,7 @@
         $("#searchResult").html(str);
         $.ajax({
             type: 'POST',
-            url : '${pageContext.request.contextPath}/admin/selectUser.action?offset='+curr+'&rows='+rows,
+            url : localhost + '/admin/selectUser.action?offset='+curr+'&rows='+rows,
             data: $('#userForm').serialize(),
             dataType : 'json',
             success:function(page){
@@ -75,6 +75,7 @@
         });
         return false;
     }
+
 </script>
 
 <div class="main">

@@ -51,4 +51,16 @@ public class MajorServiceImpl implements MajorService {
 		Map<String, Object> condition = BeanUtils2.transBean2Map(param);
 		return majorMapper.like(condition, offset, (rows-1)*offset, "majorName", "ASC");
 	}
+
+	@Override
+	public String updateOne(Major param) {
+		int code = majorMapper.update(param);
+		return code==1 ? StateCode.UPDATE_SUCCESS : StateCode.UPDATE_FAIL;
+	}
+
+	@Override
+	public String deleteById(String id) {
+		int code = majorMapper.deleteById(id);
+		return code==1 ? StateCode.DELETE_SUCCESS : StateCode.DELETE_FAIL;
+	}
 }

@@ -19,4 +19,6 @@ public interface CourseService extends BaseService<Course>{
 	Integer getTotalRecordByParam(CourseEx courseEx);
 
     Course findByCourseName(String courseName);
+
+	String deleteByParam(Course course);
 }

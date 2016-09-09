@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileInputStream;
@@ -73,6 +74,11 @@ public class AdminController {
     @RequestMapping("/toSelectQuestion")
     public String toSelectQuestion() {
         return "admin/selectQuestion";
+    }
+
+    @RequestMapping("/getQuestionForm")
+    public String getQuestionForm(String type) {
+        return "admin/questionForm/"+ type +"Form";
     }
 
     //跳转到题库导入页面
@@ -129,32 +135,40 @@ public class AdminController {
      * 增加试题
      */
     @RequestMapping("/addQuestion")
-    public @ResponseBody String addQuestion(String questionType, Choice choice, Essay essay, Discuss discuss, Fillin fillin) {
+    public @ResponseBody Result addQuestion(String questionType, Choice choice, Essay essay, Discuss discuss, Fillin fillin) {
+        Result result = new Result();
+        String stateCode = "";
         switch (questionType) {
             case "choice":
                 if (choice != null) {
-                    choiceService.addOne(choice);
-                    return "{\"\":\"\"}";
+                    stateCode = choiceService.addOne(choice); break;
                 } else break;
             case "essay":
                 if (essay != null) {
-                    essayService.addOne(essay);
-                    return "{\"\":\"\"}";
+                    stateCode = essayService.addOne(essay); break;
                 } else break;
             case "discuss":
                 if (discuss != null) {
-                    discussService.addOne(discuss);
-                    return "{\"\":\"\"}";
+                    stateCode = discussService.addOne(discuss); break;
                 } else break;
             case "fillin":
                 if (fillin != null) {
-                    fillinService.addOne(fillin);
-                    return "{\"\":\"\"}";
+                    stateCode = fillinService.addOne(fillin); break;
                 } else break;
-            default:
-                break;
+            default: break;
         }
-        return "";
+        if(stateCode.equals(StateCode.ADD_SUCCESS)){
+            result.setMsg("操作成功");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            return result;
+        } else {
+            result.setMsg("操作失败");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            result.setException(new GlobolException("增加题目失败"));
+            return result;
+        }
     }
 
     /**
@@ -252,6 +266,82 @@ public class AdminController {
                 return new Page(1,1,ds);
         }
         return new Page(0,0,null);
+    }
+
+    /***/
+    @RequestMapping(value = "/updateOneQuestion", method = RequestMethod.POST)
+    public @ResponseBody Result updateOneQuestion(String questionType, Choice choice, Essay essay, Discuss discuss, Fillin fillin){
+
+        Result result = new Result();
+        String stateCode = "";
+        switch (questionType) {
+            case "choice":
+                if (choice != null) {
+                    stateCode = choiceService.updateOne(choice); break;
+                } else break;
+            case "essay":
+                if (essay != null) {
+                    stateCode = essayService.updateOne(essay); break;
+                } else break;
+            case "discuss":
+                if (discuss != null) {
+                    stateCode = discussService.updateOne(discuss); break;
+                } else break;
+            case "fillin":
+                if (fillin != null) {
+                    stateCode = fillinService.updateOne(fillin); break;
+                } else break;
+            default: break;
+        }
+        if(stateCode.equals(StateCode.UPDATE_SUCCESS)){
+            result.setMsg("操作成功");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            return result;
+        } else {
+            result.setMsg("操作失败");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            result.setException(new GlobolException("增加题目失败"));
+            return result;
+        }
+    }
+
+    /***/
+    @RequestMapping(value = "/deleteOneQuestion", method = RequestMethod.GET)
+    public @ResponseBody Result deleteOneQuestion(String questionId, String questionType){
+        Result result = new Result();
+        String stateCode = "";
+        switch (questionType){
+            case "choice" :
+                if (questionId != null) {
+                    stateCode = choiceService.deleteById(questionId); break;
+                } else break;
+            case "fillin" :
+                if (questionId != null) {
+                    stateCode = fillinService.deleteById(questionId); break;
+                } else break;
+            case "essay" :
+                if (questionId != null) {
+                    stateCode = essayService.deleteById(questionId); break;
+                } else break;
+            case "discuss" :
+                if (questionId != null) {
+                    stateCode = discussService.deleteById(questionId); break;
+                } else break;
+        }
+        if(stateCode.equals(StateCode.DELETE_SUCCESS)){
+            result.setMsg("操作成功");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            return result;
+        } else {
+            result.setMsg("操作失败");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            result.setException(new GlobolException("删除题目失败"));
+            return result;
+        }
     }
 
     /**
@@ -394,6 +484,48 @@ public class AdminController {
         List<Course> list = courseService.getByParam(courseEx, offset, rows);
         Page<Course> page = new Page(totalRecord, rows, list);
         return page;
+    }
+
+    /***/
+    @RequestMapping("/deleteCourse")
+    public @ResponseBody Result deleteCourse(String courseId){
+        Result result = new Result();
+        Course course = new Course();
+        course.setCourseId(courseId);
+        String stateCode = courseService.deleteByParam(course);
+
+        if(stateCode.equals(StateCode.DELETE_SUCCESS)){
+            result.setMsg("操作成功");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            return result;
+        } else {
+            result.setMsg("操作失败");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            result.setException(new GlobolException("删除课程失败"));
+            return result;
+        }
+    }
+
+    /***/
+    @RequestMapping("/updateCourse")
+    public @ResponseBody Result updateCourse(Course course){
+        Result result = new Result();
+        String stateCode = courseService.updateOne(course);
+
+        if(stateCode.equals(StateCode.UPDATE_SUCCESS)){
+            result.setMsg("操作成功");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            return result;
+        } else {
+            result.setMsg("操作失败");
+            result.setStateCode(stateCode);
+            result.setTimestamp(new Date());
+            result.setException(new GlobolException("更新课程失败"));
+            return result;
+        }
     }
 
 	/*用户管理*/

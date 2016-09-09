@@ -51,8 +51,8 @@
 			</c:when>
 			<c:otherwise>
 			<form method="post" action="${pageContext.request.contextPath}/login.action" class="form-horizontal">
-				<input name="username" type="text" placeholder="账号" class="form-control input-username" autocomplete="off">
-				<input name="password" type="password" placeholder="密码" class="form-control input-password" autocomplete="off">
+				<input name="username" type="text" placeholder="账号" class="form-control input-username" autocomplete="off" value="admin">
+				<input name="password" type="password" placeholder="密码" class="form-control input-password" autocomplete="off" value="admin">
 				<div class="tip">
 					<c:if test="${requestScope.message!=null}">${requestScope.message}</c:if>
 				</div>
